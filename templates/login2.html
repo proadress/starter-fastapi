@@ -1,0 +1,42 @@
+{% extends "base.html" %}{% block title %}login{% endblock %} {%block content%}
+<form method="POST">
+  <h3 style="text-align: center">login</h3>
+  <div class="form-group">
+    <label for="email">email</label>
+    <input
+      type="email"
+      class="form-control"
+      id="floatingInput"
+      name="email"
+      placeholder="enter your email address"
+      value="y359032@gmail.com"
+    />
+  </div>
+  <div class="form-group">
+    <label for="password1">password</label>
+    <input
+      type="password"
+      class="form-control"
+      id="floatingPassword"
+      name="password1"
+      placeholder="enter your password"
+      value="12345"
+    />
+  </div>
+  <br />
+  <button type="submit" class="btn btn-primary">login</button>
+</form>
+
+<h2>前后端相加示例</h2>
+<input type="number" id="num1" placeholder="输入第一个数" value="1" />
+<input type="number" id="num2" placeholder="输入第二个数" value="2" />
+<button id="button1">相加3秒</button>
+<button id="button2">最小</button>
+<div id="result">0</div>
+<div id="result2">0</div>
+
+<script
+  type="text/javascript"
+  src="{{ url_for('static',filename='add.js') }}"
+></script>
+{%endblock%}

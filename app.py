@@ -6,6 +6,7 @@ from starlette.middleware import Middleware
 
 middleware = [Middleware(SessionMiddleware, secret_key="super-secret")]
 app = FastAPI(middleware=middleware, debug=True)
+#add static files
 app.mount("/static/", StaticFiles(directory="static", html=True), name="static")
 #load page
 from auth import auth

@@ -1,6 +1,6 @@
-from fastapi import FastAPI, routing,Request,APIRouter
+from fastapi import Request,APIRouter
 from starlette.templating import Jinja2Templates
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, RedirectResponse
 import typing
 
 auth =  APIRouter()
@@ -24,3 +24,17 @@ templates.env.globals['get_flashed_messages'] = get_flashed_messages
 def home(request: Request):
     flash(request, "Login Successful", category="error")
     return templates.TemplateResponse("header.html", {"request": request})
+
+@auth.get("/qrcode", response_class=HTMLResponse)
+def qrcode(request: Request):
+    flash(request, "Login Successful", category="error")
+    return templates.TemplateResponse("qrcode.html", {"request": request})
+
+@auth.get("/login", response_class=HTMLResponse)
+def qrcode(request: Request):
+    flash(request, "Login Successful", category="error")
+    return templates.TemplateResponse("login.html", {"request": request})
+
+@auth.get("/logout")
+def logout():
+    return RedirectResponse(url="/login")

@@ -1,6 +1,6 @@
 {% extends "base.html" %}{% block title %}login{% endblock %} {% block
 head_import %}
-<link href="{{ url_for('static',filename='sign-in.css') }}" rel="stylesheet" />
+<link href="{{ url_for('static',path='sign-in.css') }}" rel="stylesheet" />
 {% endblock %} {%block content%}
 
 <div class="form-signin w-100 m-auto ">
@@ -8,19 +8,19 @@ head_import %}
     <h1 class="h3 mb-3 fw-bold text-center">User</h1>
     <!-- 警告 -->
     <div>
-      {% with messages = get_flashed_messages(with_categories=true) %} {% if
-      messages%} {%for category,message in messages %} {%if category=='error' %}
+      {% for message in get_flashed_messages(request) %}{%if
+        message.category=='error' %}
       <div class="alert alert-danger alert-dismissible fade show" role="alert">
         <svg
           class="bi flex-shrink-0 me-2"
           role="img"
-          aria-label="Danger:"
+          aria-label={{message.category}}
           width="1em"
           height="1em"
         >
           <use xlink:href="#exclamation-triangle-fill" />
         </svg>
-        {{ message}}
+        {{message.message}}
         <button
           type="button"
           class="btn-close"
@@ -39,7 +39,7 @@ head_import %}
         >
           <use xlink:href="#check-circle-fill" />
         </svg>
-        {{ message}}
+        {{message.message}}
         <button
           type="button"
           class="btn-close"
@@ -47,7 +47,7 @@ head_import %}
           aria-label="Close"
         ></button>
       </div>
-      {%endif%} {%endfor %} {% endif %} {%endwith%}
+      {%endif%}{% endfor %}
     </div>
 
     <div class="form-floating">
@@ -90,7 +90,7 @@ head_import %}
 
 <script
   type="text/javascript"
-  src="{{ url_for('static',filename='login.js') }}"
+  src="{{ url_for('static',path='login.js') }}"
 ></script>
 
 {%endblock%}

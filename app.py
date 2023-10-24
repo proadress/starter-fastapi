@@ -1,17 +1,12 @@
-from fastapi import FastAPI, routing,Request
+from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
-from starlette.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import HTMLResponse
+from starlette.middleware.sessions import SessionMiddleware
+from starlette.middleware import Middleware
 
-app = FastAPI(debug=True)
-
-templates = Jinja2Templates(directory="templates")
-app.mount("/static", StaticFiles(directory="static"), name="static")
-print(3)
-
-
-@app.get("/", response_class=HTMLResponse)
-def home(request: Request):
-    print(2)
-    return templates.TemplateResponse("header.html", {"request": request})
+middleware = [Middleware(SessionMiddleware, secret_key="super-secret")]
+app = FastAPI(middleware=middleware, debug=True)
+app.mount("/static/", StaticFiles(directory="static", html=True), name="static")
+#load page
+from auth import auth
+app.include_router(auth)

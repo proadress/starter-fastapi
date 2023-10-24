@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="auto">
   <head>
-    <!-- <script
+    <script
       type="text/javascript"
-      src="{{ url_for('static',filename='/assets/js/jquery-3.7.1.min.js') }}"
+      src="{{ url_for('static',path='/assets/js/jquery-3.7.1.min.js') }}"
     ></script>
     <script
       type="text/javascript"
-      src="{{ url_for('static',filename='/assets/js/color-modes.js') }}"
-    ></script> -->
+      src="{{ url_for('static',path='/assets/js/color-modes.js') }}"
+    ></script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>{% block title %}headers{% endblock %}</title>
-    <!-- <link
+    <link
       rel="preload"
       as="style"
       onload="this.rel='stylesheet';this.onload=null"
-      href="{{ url_for('static',filename='assets/css/bootstrap.min.css') }}"
-    /> -->
+      href="{{ url_for('static',path='assets/css/bootstrap.min.css') }}"
+    />
     {%block head_import%}{%endblock%}
   </head>
   <body>
@@ -174,9 +174,9 @@
     </div>
 
     <div>{%block content%}{%endblock%}</div>
-    <!-- <script
+    <script
       type="text/javascript"
-      src="{{ url_for('static',filename='/assets/js/bootstrap.bundle.min.js') }}"
-    ></script> -->
+      src="{{ url_for('static',path='/assets/js/bootstrap.bundle.min.js') }}"
+    ></script>
   </body>
 </html>

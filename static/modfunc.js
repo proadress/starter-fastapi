@@ -1,34 +1,33 @@
-// $("#button1").on("click", function () {
-//   const num1 = $("#num1").val();
-//   const num2 = $("#num2").val();
-//   const data = JSON.stringify({ num1, num2 });
-//   const item = $("#result");
-//   post(data, item, "/api/add");
-// });
-
-// $("#button2").on("click", function () {
-//   const num1 = $("#num1").val();
-//   const num2 = $("#num2").val();
-//   const data = JSON.stringify({ num1, num2 });
-//   const item = $("#result2");
-//   post(data, item, "/api/min");
-// });
-
-export async function post(data, url) {
+export async function post(url, data) {
   try {
-    const requestOptions = {
+    const response = await fetch(url, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
       body: data,
-    };
-    const response = await fetch(url, requestOptions);
+    });
     const req = await response.json();
-    console.log(req);
     return req;
   } catch (error) {
     console.log("post_error");
-    return "error";
+    return "post_error";
   }
+}
+
+export function create_flash(message) {
+  const flash = document.createElement("div");
+  flash.classList.add(
+    "alert",
+    "alert-danger",
+    "alert-dismissible",
+    "fade",
+    "show"
+  );
+  flash.setAttribute("role", "alert");
+  flash.innerHTML = `
+          <svg class="bi flex-shrink-0 me-2" role="img" aria-label="error" width="1em" height="1em">
+              <use xlink:href="#exclamation-triangle-fill" />
+          </svg>
+          ${message}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      `;
+  return flash;
 }

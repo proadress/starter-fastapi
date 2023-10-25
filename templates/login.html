@@ -3,52 +3,11 @@ head_import %}
 <link href="{{ url_for('static',path='sign-in.css') }}" rel="stylesheet" />
 {% endblock %} {%block content%}
 
-<div class="form-signin w-100 m-auto ">
-  <form class="p-4 border rounded-5" method="POST">
+<div class="form-signin w-100 m-auto">
+  <form class="p-4 border rounded-5" method="POST" id="login-form">
     <h1 class="h3 mb-3 fw-bold text-center">User</h1>
     <!-- 警告 -->
-    <div>
-      {% for message in get_flashed_messages(request) %}{%if
-        message.category=='error' %}
-      <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <svg
-          class="bi flex-shrink-0 me-2"
-          role="img"
-          aria-label={{message.category}}
-          width="1em"
-          height="1em"
-        >
-          <use xlink:href="#exclamation-triangle-fill" />
-        </svg>
-        {{message.message}}
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="alert"
-          aria-label="Close"
-        ></button>
-      </div>
-      {%else%}
-      <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <svg
-          class="bi flex-shrink-0 me-2"
-          role="img"
-          aria-label="Success:"
-          width="1em"
-          height="1em"
-        >
-          <use xlink:href="#check-circle-fill" />
-        </svg>
-        {{message.message}}
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="alert"
-          aria-label="Close"
-        ></button>
-      </div>
-      {%endif%}{% endfor %}
-    </div>
+    <div id="error"></div>
 
     <div class="form-floating">
       <input
@@ -57,6 +16,7 @@ head_import %}
         id="floatingInput"
         name="email"
         placeholder="name@example.com"
+        value="1@1"
       />
       <label for="floatingInput">Email address</label>
     </div>
@@ -67,6 +27,7 @@ head_import %}
         id="floatingPassword"
         name="password"
         placeholder="Password"
+        value="12345"
       />
       <label for="floatingPassword">Password</label>
     </div>
@@ -83,14 +44,12 @@ head_import %}
         Remember me
       </label>
     </div>
-    <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
+    <button class="btn btn-primary w-100 py-2" type="submit" id="submit">
+      Sign in
+    </button>
     <!-- <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2023</p> -->
   </form>
 </div>
-
-<script
-  type="text/javascript"
-  src="{{ url_for('static',path='login.js') }}"
-></script>
+<script type="module" src="{{ url_for('static',path='login.js') }}"></script>
 
 {%endblock%}

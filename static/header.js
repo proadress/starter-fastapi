@@ -1,12 +1,14 @@
-$(document).ready(function () {
-  // 獲取當前網址
+document.addEventListener("DOMContentLoaded", function() {
+  // 获取当前页面的路径
   const currentURL = window.location.pathname;
   console.log(currentURL);
-  // 獲取HTML元素（例如一個<a>元素）
-  const linkElement = document.getElementById(currentURL); // 請替換為實際的元素ID
+
+  // 获取HTML元素（例如一个<a>元素）
+  const linkElement = document.getElementById(currentURL); // 请替换为实际的元素ID
   console.log(linkElement);
+
   if (linkElement) {
-    setTimeout(function () {
+    setTimeout(function() {
       linkElement.className = "nav-link text-secondary";
     }, 0);
   }

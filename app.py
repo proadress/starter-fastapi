@@ -1,13 +1,35 @@
 from fastapi import FastAPI
-from fastapi.staticfiles import StaticFiles
-from fastapi.staticfiles import StaticFiles
-from starlette.middleware.sessions import SessionMiddleware
-from starlette.middleware import Middleware
+from fastapi.responses import FileResponse
 
-middleware = [Middleware(SessionMiddleware, secret_key="super-secret")]
-app = FastAPI(middleware=middleware, debug=True)
-#add static files
-app.mount("/static/", StaticFiles(directory="static", html=True), name="static")
-#load page
-from auth import auth
-app.include_router(auth)
+from pydantic import BaseModel
+
+app = FastAPI()
+
+
+class Item(BaseModel):
+    item_id: int
+
+
+@app.get("/")
+async def root():
+    return {"message": "Hello World"}
+
+
+@app.get('/favicon.ico', include_in_schema=False)
+async def favicon():
+    return FileResponse('favicon.ico')
+
+
+@app.get("/item/{item_id}")
+async def read_item(item_id: int):
+    return {"item_id": item_id}
+
+
+@app.get("/items/")
+async def list_items():
+    return [{"item_id": 1, "name": "Foo"}, {"item_id": 2, "name": "Bar"}]
+
+
+@app.post("/items/")
+async def create_item(item: Item):
+    return item

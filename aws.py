@@ -47,7 +47,7 @@ except:
             keep_find = False
         except:
             input("!!!psssword need to update!!!(press enter)")
-
+print('link to db successfully')
 
 def check_item(name, contant):
     key_condition_expression = Key(name).eq(contant)

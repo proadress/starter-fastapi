@@ -1,11 +1,8 @@
 from fastapi import Request, APIRouter, Form, HTTPException
 from starlette.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse, RedirectResponse
-import boto3
+import aws
 auth = APIRouter()
-
-dynamodb = boto3.resource('dynamodb')
-db = dynamodb.Table('ill-ruby-firefly-gownCyclicDB')
 
 
 templates = Jinja2Templates(directory="templates")

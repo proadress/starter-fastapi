@@ -1,52 +1,50 @@
 {% extends "header.html" %}{% block title %}signup{% endblock %} {%block
 main_content%}
-<form method="POST">
+<form method="POST" id="signupForm">
   <h3 style="text-align: center">signup</h3>
   <div class="form-group">
-    <label for="email">email</label>
-    <input
-      type="email"
-      class="form-control"
-      id="email"
-      name="email"
-      placeholder="enter your email address"
-      value="y359032@gmail.com"
-    />
-  </div>
-  <div class="form-group">
-    <label for="firstname">first name</label>
+    <label>student id</label>
     <input
       type="text"
       class="form-control"
-      id="firstname"
-      name="firstname"
-      placeholder="enter your first name"
+      name="sid"
+      placeholder="student id"
+      value="0096c029"
+    />
+  </div>
+  <div class="form-group">
+    <label>username</label>
+    <input
+      type="text"
+      class="form-control"
+      name="username"
+      placeholder="username"
       value="yc"
     />
   </div>
   <div class="form-group">
-    <label for="password1">password</label>
+    <label>password</label>
     <input
       type="password"
       class="form-control"
-      id="password1"
-      name="password1"
-      placeholder="enter your password"
-      value="12345"
+      name="password"
+      placeholder="password"
+      value="88888888"
     />
   </div>
   <div class="form-group">
-    <label for="password2">password(confirm)</label>
+    <label>password(confirm)</label>
     <input
       type="password"
       class="form-control"
-      id="password2"
-      name="password2"
-      placeholder="enter your password(confirm)"
-      value="12345"
+      name="confirm"
+      placeholder="password(confirm)"
+      value="88888888"
     />
   </div>
   <br />
   <button type="submit" class="btn btn-primary">submit</button>
 </form>
+<script type="module" src="{{ url_for('static',path='signup.js') }}"></script>
+
 {%endblock%}

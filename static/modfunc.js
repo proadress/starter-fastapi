@@ -1,8 +1,30 @@
+let token = undefined;
+
+export function gettoken() {
+  return token;
+}
+export function settoken(new_token) {
+  token = new_token;
+}
+
 export async function post(url, data) {
   try {
     const response = await fetch(url, {
       method: "POST",
       body: data,
+    });
+    const req = await response.json();
+    return req;
+  } catch (error) {
+    console.log("post_error");
+    return "post_error";
+  }
+}
+
+export async function get(url) {
+  try {
+    const response = await fetch(url, {
+      method: "GET",
     });
     const req = await response.json();
     return req;
